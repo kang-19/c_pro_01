@@ -1,0 +1,51 @@
+#include <stdio.h>
+int a[10];
+int k = 0;
+int m = sizeof(a)/4;
+int rs;
+
+int print(){
+	for (int i=0; i<k; i++){
+		printf("a[%d]=%d  ", i, a[i]);
+	}
+}
+
+int push(){
+	if(k>m){
+		return -1;
+	}
+	
+	if(k == 0){
+		k++;
+		a[0] = 1;
+	}else{
+		a[k] = k + 1;
+		k = a[k];
+	}
+	return 0;
+}
+
+int pop() {
+	--k;
+	a[k] = 0;
+}
+
+int main(void) {
+	
+	for(int i=0; i<10; i++){
+		push();	
+	}
+	/*
+	rs=push();
+	if (rs < 0){
+		printf("overflow");
+		return 0;
+	}
+	*/
+	pop();
+	pop();
+	pop();
+	print();
+	
+	return 0;
+}
